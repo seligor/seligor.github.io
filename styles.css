@@ -9,6 +9,12 @@
 }
 
 /* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--bg-dark);
@@ -16,11 +22,64 @@ body {
     line-height: 1.6;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Навигация */
+nav {
+    background-color: var(--bg-card);
+    padding: 1.2rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
 /* Шапка */
 header {
     background: linear-gradient(rgba(30, 30, 30, 0.9), rgba(30, 30, 30, 0.9)), 
                 url('images/print-bg.jpg') center/cover;
-    padding: 4rem 0 6rem;
+    padding: 5rem 0 6rem;
     text-align: center;
 }
 
@@ -34,18 +93,23 @@ header {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     font-weight: 700;
+    line-height: 1.2;
 }
 
 .subtitle {
     font-size: 1.2rem;
     color: var(--text-secondary);
     margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Блок преимуществ */
 .advantages-section {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .advantages-grid {
@@ -59,28 +123,30 @@ header {
     background-color: var(--bg-card);
     padding: 2rem 1.5rem;
     border-radius: 8px;
-    transition: transform 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .advantage-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .advantage-icon {
     font-size: 2.5rem;
     color: var(--accent);
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
 }
 
 .advantage-card h3 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 0.8rem;
     color: var(--accent-light);
 }
 
 /* Блок требований */
 .requirements-section {
-    margin-top: 3rem;
+    margin-top: 4rem;
 }
 
 .requirements-section h2 {
@@ -102,6 +168,11 @@ header {
     border-radius: 8px;
     display: flex;
     align-items: center;
+    transition: background-color 0.3s;
+}
+
+.requirement-card:hover {
+    background-color: rgba(58, 58, 58, 0.9);
 }
 
 .requirement-icon {
@@ -109,10 +180,104 @@ header {
     color: var(--accent);
     margin-right: 1.2rem;
     min-width: 40px;
+    text-align: center;
+}
+
+/* Галерея */
+.video-gallery {
+    background-color: var(--bg-main);
+    padding: 4rem 0;
+}
+
+.video-gallery h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--accent);
+}
+
+.video-grid {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.video-card {
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.video-info {
+    padding: 1.2rem;
+}
+
+.video-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.video-info p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* О проекте */
+.about {
+    background-color: var(--bg-main);
+    padding: 4rem 0;
+}
+
+.about h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--accent);
+}
+
+.about p {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Подвал */
+footer {
+    background-color: var(--bg-card);
+    padding: 2.5rem 0;
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+footer p:first-child {
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
 }
 
 /* Адаптивность */
 @media (max-width: 768px) {
+    .nav-links {
+        gap: 1.2rem;
+    }
+    
     .header-content h1 {
         font-size: 2rem;
     }
@@ -124,10 +289,30 @@ header {
     .requirement-card {
         flex-direction: column;
         text-align: center;
+        padding: 1.5rem 1rem;
     }
     
     .requirement-icon {
         margin-right: 0;
         margin-bottom: 1rem;
+    }
+    
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .header-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
     }
 }
