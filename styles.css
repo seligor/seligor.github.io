@@ -5,14 +5,10 @@
     --text-primary: #ffffff;
     --text-secondary: #cccccc;
     --accent: #4d8bf0;
+    --accent-light: #6da3f7;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Общие стили */
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--bg-dark);
@@ -20,136 +16,118 @@ body {
     line-height: 1.6;
 }
 
-nav {
-    background-color: var(--bg-card);
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+/* Шапка */
+header {
+    background: linear-gradient(rgba(30, 30, 30, 0.9), rgba(30, 30, 30, 0.9)), 
+                url('images/print-bg.jpg') center/cover;
+    padding: 4rem 0 6rem;
+    text-align: center;
 }
 
-.nav-container {
-    width: 90%;
+.header-content {
     max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo img {
-    height: 40px;
-}
-
-.nav-links a {
-    color: var(--text-primary);
-    text-decoration: none;
-    margin-left: 2rem;
-    font-weight: 600;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: var(--accent);
-}
-
-header {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                url('images/hero-bg.jpg') center/cover;
-    height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    padding: 0 2rem;
 }
 
 .header-content h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
+    font-weight: 700;
 }
 
-.header-content p {
+.subtitle {
     font-size: 1.2rem;
     color: var(--text-secondary);
+    margin-bottom: 3rem;
 }
 
-main {
-    background-color: var(--bg-main);
-    padding: 4rem 0;
-}
-
-section {
-    width: 90%;
+/* Блок преимуществ */
+.advantages-section {
     max-width: 1200px;
-    margin: 0 auto 3rem;
+    margin: 0 auto;
 }
 
-h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: var(--accent);
-}
-
-.video-grid {
+.advantages-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    margin: 3rem 0;
 }
 
-.video-card {
+.advantage-card {
     background-color: var(--bg-card);
+    padding: 2rem 1.5rem;
     border-radius: 8px;
-    overflow: hidden;
     transition: transform 0.3s;
 }
 
-.video-card:hover {
+.advantage-card:hover {
     transform: translateY(-5px);
 }
 
-video {
-    width: 100%;
-    display: block;
+.advantage-icon {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
 }
 
-.video-info {
-    padding: 1rem;
+.advantage-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: var(--accent-light);
 }
 
-.video-info h3 {
-    margin-bottom: 0.5rem;
+/* Блок требований */
+.requirements-section {
+    margin-top: 3rem;
 }
 
-.video-info p {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
+.requirements-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--accent);
+    font-size: 1.5rem;
 }
 
-.placeholder {
-    height: 200px;
-    background-color: var(--bg-dark);
+.requirements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.requirement-card {
+    background-color: rgba(58, 58, 58, 0.7);
+    padding: 1.5rem;
+    border-radius: 8px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: var(--text-secondary);
 }
 
-footer {
-    background-color: var(--bg-card);
-    padding: 2rem 0;
-    text-align: center;
+.requirement-icon {
+    font-size: 1.8rem;
+    color: var(--accent);
+    margin-right: 1.2rem;
+    min-width: 40px;
 }
 
-footer p {
-    margin-bottom: 0.5rem;
-}
-
+/* Адаптивность */
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-    
     .header-content h1 {
         font-size: 2rem;
+    }
+    
+    .advantages-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .requirement-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .requirement-icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
     }
 }
