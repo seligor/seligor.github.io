@@ -324,6 +324,97 @@ footer p:first-child {
     margin-bottom: 1rem;
 }
 
+/* Стили для контактной секции */
+.contact-section {
+    background-color: var(--bg-card);
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-section h2 {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 3rem;
+}
+
+.contact-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.contact-card {
+    background-color: var(--bg-main);
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-card i {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.contact-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.contact-card a {
+    color: var(--accent-light);
+    display: block;
+    margin: 0.5rem 0;
+    transition: color 0.3s;
+}
+
+.contact-card a:hover {
+    color: var(--accent);
+}
+
+/* Стили для футера */
+footer {
+    background-color: var(--bg-dark);
+    padding: 2rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-links {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-links a {
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--accent);
+}
+
+
+
 /* Адаптивность */
 @media (max-width: 768px) {
     .nav-links {
@@ -351,6 +442,18 @@ footer p:first-child {
     
     .video-grid {
         grid-template-columns: 1fr;
+    }
+
+        .contact-methods {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+    }
+    
+    .social-links {
+        margin-top: 1rem;
     }
 }
 
