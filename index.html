@@ -1,37 +1,75 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Print Gallery</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <!-- GitHub-специфичные мета-теги -->
-  <meta name="description" content="Примеры 3D-печати от нашего сообщества">
-  <meta name="keywords" content="3D печать, FDM, SLA, GitHub Gallery">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Print Showcase</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>3D Print Gallery</h1>
-      <p>Открытый проект на GitHub</p>
-    </header>
-    
     <nav>
-      <a href="/" class="active">Главная</a>
-      <a href="/gallery">Галерея</a>
-      <a href="https://github.com/seligor/seligor.github.io">Исходный код</a>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="images/logo.svg" alt="3D Print Logo">
+            </a>
+            <div class="nav-links">
+                <a href="#gallery">Галерея</a>
+                <a href="#about">О проекте</a>
+                <a href="#contact">Контакты</a>
+            </div>
+        </div>
     </nav>
 
-    <div class="github-banner">
-      <a href="https://github.com/seligor/seligor.github.io/fork">
-        <img src="https://img.shields.io/github/forks/seligor/seligor.github.io?style=social" alt="Fork">
-      </a>
-    </div>
-  </div>
-  <div class="github-links">
-  <a href="https://github.com/seligor/seligor.github.io/stargazers">
-    <img src="https://img.shields.io/github/stars/seligor/seligor.github.io?style=for-the-badge">
-  </a>
-</div>
+    <header>
+        <div class="header-content">
+            <h1>3D Print Showcase</h1>
+            <p>Лучшие примеры печати в высоком качестве</p>
+        </div>
+    </header>
+
+    <main>
+        <section id="gallery" class="video-gallery">
+            <h2>Наши работы</h2>
+            <div class="video-grid">
+                <!-- Видео 1 -->
+                <div class="video-card">
+                    <video 
+                        width="100%" 
+                        controls 
+                        preload="metadata"
+                        poster="videos/print1-poster.jpg">
+                        <source src="videos/print1.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                    <div class="video-info">
+                        <h3>Шестерня из ABS</h3>
+                        <p>Время печати: 5 часов</p>
+                    </div>
+                </div>
+
+                <!-- Видео 2 (шаблон для добавления) -->
+                <div class="video-card">
+                    <div class="placeholder">
+                        <p>Добавьте своё видео</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2>О проекте</h2>
+            <p>Этот сайт демонстрирует возможности современной 3D-печати. Все работы созданы на принтерах FDM и SLA.</p>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <p>© 2023 3D Print Showcase</p>
+        <p>Контакты: example@email.com</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
