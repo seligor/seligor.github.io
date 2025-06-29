@@ -34,4 +34,27 @@ document.addEventListener('DOMContentLoaded', function() {
         
         photoGrid.appendChild(photoCard);
     });
+   photoCard.addEventListener('click', function() {
+    showModal(photo);
+});
+
+function showModal(photo) {
+    const modal = document.createElement('div');
+    modal.className = 'photo-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img src="gallery/${photo.filename}" alt="${photo.title}">
+            <div class="modal-info">
+                <h3>${photo.title}</h3>
+                <p>Время печати: ${photo.time}</p>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+    
+    modal.querySelector('.close').addEventListener('click', function() {
+        document.body.removeChild(modal);
+    });
+} 
 });
