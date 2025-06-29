@@ -5,12 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Массив с данными о фотографиях
     const photos = [
         {
-            filename: 'photo1.jpg',
+            filename: 'project1.jpg',
             title: 'Название модели 1',
             time: '1 час 15 минут'
         },
         {
-            filename: 'photo2.jpg',
+            filename: 'project1-1.jpg',
             title: 'Название модели 2',
             time: '45 минут'
         },
