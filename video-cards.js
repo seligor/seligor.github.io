@@ -13,6 +13,56 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Магниты на холодильник "Звёздочки поведения"',
             time: '30 минут'
         },
+        {
+            embed: '2Zww5jjAsppYyjJiY4WBaV',
+            title: 'Игрушка для ребёнка "Планета Сатурн"',
+            time: '1 час'
+        },
+        {
+            embed: 'gXeYcjsnmgY1Thp8Weok9H',
+            title: 'Детали для RC дрифт машинки 1:10',
+            time: '1 час'
+        },
+        {
+            embed: 'rHTsT2dzggrqjyuTpva3vS',
+            title: 'Проект турбины для 775 мотора',
+            time: '1 час'
+        },
+        {
+            embed: 'nFG2kQryQT3opGRfhWYRjH',
+            title: 'Проект турбины для 775 мотора',
+            time: '40 минут'
+        },
+        {
+            embed: 'kFd1rqAeznp48e4PiVcpFM',
+            title: 'Проект турбины для 775 мотора',
+            time: '4 часа'
+        },
+        {
+            embed: '4Er8AT1mAFhTvXF8MW6Uaq',
+            title: 'Вентиляция. Переходник со 110 трубы на вентилятор noktua',
+            time: '40 минут'
+        },
+        {
+            embed: 'xi5H5nxYTaFa4gqNXZBPxY',
+            title: 'Ротор',
+            time: '30 минут'
+        },
+        {
+            embed: 'sxfcDHi53zGK33xTKyvqvr',
+            title: 'Коллектор',
+            time: '40 минут'
+        },
+        {
+            embed: 'sxfcDHi53zGK33xTKyvqvr',
+            title: 'Коллектор',
+            time: '40 минут'
+        },
+        {
+            embed: 'rr6DAYfHvg34CW3K2jZCaZ',
+            title: 'Дозатор',
+            time: '1 час 20 минут'
+        },
         // Добавьте все остальные видео в этот массив
     ];
 
