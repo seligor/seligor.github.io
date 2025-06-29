@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Примеры печати 3d</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(103115274, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/103115274" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <!-- <a href="#" class="logo">
+                <img src="images/logo.svg" alt="3D Print Logo">
+            </a>-->
+            <div class="nav-links">
+                <a href="#gallery">Галерея</a>
+                <a href="#about">О проекте</a>
+                <a href="#contact">Контакты</a>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="header-content">
+            <h1>Профессиональная 3D печать на заказ</h1>
+            <p class="subtitle">Изготовление деталей любой сложности с детализированной проработкой</p>
+            
+            <div class="advantages-section" id="advantages">
+                <div class="advantages-grid">
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="fas fa-stopwatch"></i>
+                        </div>
+                        <h3>Быстрая печать</h3>
+                        <p>Большинство заказов готовы уже в день обращения благодаря современному оборудованию</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="fas fa-ruble-sign"></i>
+                        </div>
+                        <h3>Доступные цены</h3>
+                        <p>От 8 ₽ за грамм материала. Точная стоимость рассчитывается после подготовки модели</p>
+                    </div>
+                    
+                    <div class="advantage-card">
+                        <div class="advantage-icon">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                        <h3>Разнообразие материалов</h3>
+                        <p>PLA, PETG, ABS - подберём оптимальный вариант для ваших задач</p>
+                    </div>
+                </div>
+                
+                <div class="requirements-section">
+                    <h2>Что нужно для заказа:</h2>
+                    <div class="requirements-grid">
+                        <div class="requirement-card">
+                            <div class="requirement-icon">
+                                <i class="fas fa-file-export"></i>
+                            </div>
+                            <p>3D модель в формате STL/STEP или чертёж с размерами(можно прислать на почту <a href="mailto:s-el-igor@yandex.ru">s-el-igor@yandex.ru</a>)</p>
+                        </div>
+                        <div class="requirement-card">
+                            <div class="requirement-icon">
+                                <i class="fas fa-pencil-ruler"></i>
+                            </div>
+                            <p>Можно разработать модель по вашему ТЗ (требуется описание)</p>
+                        </div>
+                        <div class="requirement-card">
+                            <div class="requirement-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <p>Для существующих объектов может потребоваться 3D сканирование</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="gallery" class="video-gallery">
+            <h2>Наши работы</h2>
+            <div class="video-grid">
+                <script src="video-cards.js"></script>
+            </div>
+        </section>
+
+
+        <div class="about-section" id="about">
+    <h2>О сервисе 3D-печати</h2>
+    <div class="about-content">
+        <div class="about-card">
+            <i class="fas fa-print"></i>
+            <h3>Технологии производства</h3>
+            <p>Мы специализируемся на FDM-печати - наиболее распространенном методе послойного наращивания изделий из термопластиков. Эта технология обеспечивает оптимальное сочетание скорости, точности и стоимости изготовления деталей.</p>
+        </div>
+
+        <div class="about-card">
+            <i class="fas fa-file-upload"></i>
+            <h3>Требования к заказу</h3>
+            <p>Для начала работы вам необходимо предоставить:
+                <ul>
+                    <li>3D-модель в формате STL/STEP/OBJ</li>
+                    <li>Или технический чертеж с указанием всех размеров и допусков</li>
+                </ul>
+            При отсутствии модели мы можем разработать ее по вашему техническому заданию.</p>
+        </div>
+
+        <div class="about-card">
+            <i class="fas fa-calculator"></i>
+            <h3>Ценообразование</h3>
+            <p>Стоимость рассчитывается индивидуально после:
+                <ul>
+                    <li>Анализа модели в слайсере</li>
+                    <li>Определения расхода материала</li>
+                    <li>Расчета машинного времени</li>
+                </ul>
+            Базовая ставка начинается от 8 ₽/грамм с учетом всех технологических затрат.</p>
+        </div>
+    </div>
+</div>
+        
+        <!--<section id="about" class="about">
+            <h2>О проекте</h2>
+            <p>Этот сайт демонстрирует возможности 3D-печати. Все работы созданы на принтерах FDM.</p>
+            <p>Для заказа печати от вас потребуется модель детали, которую требуется напечатать, либо чертёж с размерами.</p>
+            <p>Стоимость печати я смогу расчитать по результатам нарезки детали слайсером, учитывая затраты материала и времени печати</p>
+        </section>
+        -->
+    </main>
+
+<!-- Контактная секция -->
+<section id="contacts" class="contact-section">
+    <div class="contact-container">
+        <h2>Свяжитесь со мной</h2>
+        <div class="contact-methods">
+            <div class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Электронная почта</h3>
+                <a href="mailto:s-el-igor@yandex.ru">s-el-igor@yandex.ru</a>
+                <p>Отвечаю в течение 24 часов</p>
+            </div>
+            
+            <div class="contact-card">
+                <i class="fas fa-comment-alt"></i>
+                <h3>Мессенджеры</h3>
+                <p>Telegram: @seligor</p>
+
+            </div>
+            
+            <div class="contact-card">
+                <i class="fas fa-clock"></i>
+                <h3>Часы работы</h3>
+                <p>Пн-Пт: 9:00 - 20:00</p>
+                <p>Сб-Вс: по договоренности</p>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <footer id="contact">
+    <div class="footer-content">
+        <p>© 2025</p>
+        <div class="social-links">
+            <a href="https://t.me/seligor"><i class="fab fa-telegram"></i></a>
+           <!-- <a href="#"><i class="fab fa-vk"></i></a> -->
+           <!-- <a href="#"><i class="fab fa-youtube"></i></a> -->
+        </div>
+    </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
