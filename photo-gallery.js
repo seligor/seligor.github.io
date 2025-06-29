@@ -6,22 +6,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const photos = [
         {
             filename: 'project1.jpg',    // имя файла в папке gallery
-            title: 'Деталь механизма', // название работы
-            time: '1 час 15 минут',   // время печати
+            title: 'Механизм выдавливания', // название работы
+            time: '2 часа',   // время печати
             material: 'PLA'           // материал (опционально)
         },
         {
             filename: 'project1-1.jpg',
-            title: 'Декоративный элемент',
-            time: '45 минут',
+            title: 'Механизм выдавливания',
+            time: '2 часа',
             material: 'PLA'
         },
-        {
-            filename: 'photo3.jpg',
-            title: 'Корпус устройства',
-            time: '3 часа 20 минут',
-            material: 'ABS'
-        },
+
         // Добавьте остальные фотографии по такому же принципу
     ];
 
