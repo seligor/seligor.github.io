@@ -54,11 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
             time: '40 минут'
         },
         {
-            embed: 'sxfcDHi53zGK33xTKyvqvr',
-            title: 'Коллектор',
-            time: '40 минут'
-        },
-        {
             embed: 'rr6DAYfHvg34CW3K2jZCaZ',
             title: 'Дозатор',
             time: '1 час 20 минут'
