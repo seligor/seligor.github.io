@@ -5,56 +5,123 @@ document.addEventListener('DOMContentLoaded', function() {
     // Массив с данными о фотографиях
     const photos = [
         {
-            filename: 'project1.jpg',
-            title: 'Название модели 1',
-            time: '1 час 15 минут'
+            filename: 'project1.jpg',    // имя файла в папке gallery
+            title: 'Деталь механизма', // название работы
+            time: '1 час 15 минут',   // время печати
+            material: 'PLA'           // материал (опционально)
         },
         {
             filename: 'project1-1.jpg',
-            title: 'Название модели 2',
-            time: '45 минут'
+            title: 'Декоративный элемент',
+            time: '45 минут',
+            material: 'PLA'
         },
-        // Добавьте остальные фотографии
+        {
+            filename: 'photo3.jpg',
+            title: 'Корпус устройства',
+            time: '3 часа 20 минут',
+            material: 'ABS'
+        },
+        // Добавьте остальные фотографии по такому же принципу
     ];
 
-    // Создаем карточки для каждой фотографии
-    photos.forEach(photo => {
+    // Функция для создания карточки фото
+    function createPhotoCard(photo) {
         const photoCard = document.createElement('div');
         photoCard.className = 'photo-card';
         
+        // Создаем HTML структуру карточки
         photoCard.innerHTML = `
             <div class="photo-container">
-                <img src="gallery/${photo.filename}" alt="${photo.title}">
+                <img src="gallery/${photo.filename}" alt="${photo.title}" loading="lazy">
             </div>
             <div class="photo-info">
                 <h3>${photo.title}</h3>
                 <p>Время печати: ${photo.time}</p>
+                ${photo.material ? `<p>Материал: ${photo.material}</p>` : ''}
             </div>
         `;
         
+        // Добавляем обработчик клика для открытия модального окна
+        photoCard.addEventListener('click', () => openModal(photo));
+        
+        return photoCard;
+    }
+
+    // Функция для открытия модального окна
+    function openModal(photo) {
+        const modal = document.createElement('div');
+        modal.className = 'photo-modal';
+        modal.innerHTML = `
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <img src="gallery/${photo.filename}" alt="${photo.title}">
+                <div class="modal-info">
+                    <h3>${photo.title}</h3>
+                    <p>Время печати: ${photo.time}</p>
+                    ${photo.material ? `<p>Материал: ${photo.material}</p>` : ''}
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Закрытие модального окна
+        const closeBtn = modal.querySelector('.close');
+        closeBtn.addEventListener('click', () => {
+            document.body.removeChild(modal);
+        });
+        
+        // Закрытие по клику вне изображения
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                document.body.removeChild(modal);
+            }
+        });
+        
+        // Закрытие по ESC
+        document.addEventListener('keydown', function closeOnEsc(e) {
+            if (e.key === 'Escape') {
+                document.body.removeChild(modal);
+                document.removeEventListener('keydown', closeOnEsc);
+            }
+        });
+    }
+
+    // Добавляем все фотографии в галерею
+    photos.forEach(photo => {
+        const photoCard = createPhotoCard(photo);
         photoGrid.appendChild(photoCard);
     });
-   photoCard.addEventListener('click', function() {
-    showModal(photo);
-});
 
-function showModal(photo) {
-    const modal = document.createElement('div');
-    modal.className = 'photo-modal';
-    modal.innerHTML = `
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <img src="gallery/${photo.filename}" alt="${photo.title}">
-            <div class="modal-info">
-                <h3>${photo.title}</h3>
-                <p>Время печати: ${photo.time}</p>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(modal);
-    
-    modal.querySelector('.close').addEventListener('click', function() {
-        document.body.removeChild(modal);
-    });
-} 
+    // Опционально: можно добавить фильтрацию по материалам
+    // Например, создать кнопки фильтрации над галереей
+    const materials = [...new Set(photos.map(p => p.material).filter(Boolean))];
+    if (materials.length > 1) {
+        const filterContainer = document.createElement('div');
+        filterContainer.className = 'filter-buttons';
+        filterContainer.innerHTML = `
+            <button class="filter-btn active" data-material="all">Все материалы</button>
+            ${materials.map(m => `<button class="filter-btn" data-material="${m}">${m}</button>`).join('')}
+        `;
+        
+        photoGrid.parentNode.insertBefore(filterContainer, photoGrid);
+        
+        // Обработчики для кнопок фильтрации
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                this.classList.add('active');
+                
+                const material = this.dataset.material;
+                document.querySelectorAll('.photo-card').forEach(card => {
+                    if (material === 'all' || card.querySelector('p:last-child')?.textContent.includes(material)) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
 });
