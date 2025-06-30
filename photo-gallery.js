@@ -23,6 +23,12 @@ document.addEventListener('DOMContentLoaded', function() {
             material: 'PETG'
         },
         {
+            filename: 'wallclock.jpg',
+            title: 'Настенные часы',
+            time: '2 часа',
+            material: 'PETG'
+        },
+        {
             filename: 'dozator_rotor.jpg',
             title: 'Разработка проекта из ротора\дозатора\коллектора\бункера',
             time: '2 часа',
