@@ -16,6 +16,39 @@ document.addEventListener('DOMContentLoaded', function() {
             time: '2 часа',
             material: 'PLA'
         },
+        {
+            filename: 'rc-car_1to10.jpg',
+            title: 'Детали RC модели',
+            time: '2 часа',
+            material: 'PETG'
+        },
+        {
+            filename: 'dozator_rotor.jpg',
+            title: 'Разработка проекта из ротора\дозатора\коллектора\бункера',
+            time: '2 часа',
+            material: 'PETG'
+        },
+        {
+            filename: 'mayak.jpg',
+            title: 'Художественная фигурка Маяк',
+            time: '2 часа',
+            material: 'PETG'
+        },
+        {
+            filename: 'vetryak.jpg',
+            title: 'Проект "ветряк" - показывает направление и силу ветра',
+            time: '6 часов',
+            material: 'PETG'
+        },
+        {
+            filename: 'catmask.jpg',
+            title: 'Маска для котов',
+            time: '5 часов',
+            material: 'PETG'
+        },
+
+
+
 
         // Добавьте остальные фотографии по такому же принципу
     ];
