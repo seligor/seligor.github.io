@@ -82,6 +82,33 @@ header p {
     font-size: 1rem;
 }
 
+.links-container {
+    margin: 1rem 0;
+    width: 100%;
+}
+
+.content-link {
+    display: block;
+    color: var(--text-color);
+    background-color: rgba(15, 52, 96, 0.3);
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-size: 0.9rem;
+}
+
+.content-link:hover {
+    background-color: var(--accent-color);
+    text-decoration: none;
+}
+
+.content-link i {
+    margin-right: 0.5rem;
+    font-size: 0.8rem;
+}
+
 footer {
     background-color: var(--secondary-color);
     text-align: center;
