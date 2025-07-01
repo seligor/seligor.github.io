@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моддинг ресурс</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Моддинг ресурс</h1>
+        <p>Всё для модификации вашей игры</p>
+    </header>
+    
+    <main class="grid-container">
+        <div class="grid-item" onclick="navigateTo('faq')">
+            <div class="icon"><i class="fas fa-question-circle"></i></div>
+            <h2>FAQ</h2>
+            <p>Часто задаваемые вопросы и ответы</p>
+        </div>
+        
+        <div class="grid-item" onclick="navigateTo('install')">
+            <div class="icon"><i class="fas fa-download"></i></div>
+            <h2>Установка мода</h2>
+            <p>Пошаговое руководство по установке</p>
+        </div>
+        
+        <div class="grid-item" onclick="navigateTo('uninstall')">
+            <div class="icon"><i class="fas fa-trash-alt"></i></div>
+            <h2>Удаление мода</h2>
+            <p>Как правильно удалить мод</p>
+        </div>
+        
+        <div class="grid-item" onclick="navigateTo('recommendations')">
+            <div class="icon"><i class="fas fa-thumbs-up"></i></div>
+            <h2>Рекомендации</h2>
+            <p>Полезные советы и рекомендации</p>
+        </div>
+        
+        <div class="grid-item" onclick="navigateTo('macros')">
+            <div class="icon"><i class="fas fa-code"></i></div>
+            <h2>Макросы</h2>
+            <p>Готовые макросы для удобства</p>
+        </div>
+    </main>
+    
+    <footer>
+        <p>© 2023 Моддинг ресурс. Все права защищены.</p>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
