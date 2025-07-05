@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Массив с данными о фотографиях
     const photos = [
         {
+            filename: 'hdd_bay.jpg',
+            title: 'Корзина с салазками для HDD/SSD 2.5"',
+            time: '2 часа',
+            material: 'PETG'
+        },
+        {
             filename: 'project1.jpg',    // имя файла в папке gallery
             title: 'Механизм выдавливания', // название работы
             time: '2 часа',   // время печати
