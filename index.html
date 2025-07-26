@@ -173,7 +173,23 @@
             </div>
             
             <div class="contact-card">
-                <script src="https://forms.yandex.ru/_static/embed.js"></script><iframe src="https://forms.yandex.ru/u/6883656fe010db077622b923?iframe=1" frameborder="0" name="ya-form-6883656fe010db077622b923"></iframe>
+                <i class="fas fa-comment-dots"></i>
+                <h3>Форма обратной связи</h3>
+                <p>Задайте вопрос или отправьте заявку прямо с сайта</p>
+                <button id="openFormBtn" class="form-button">Отправить заявку</button>
+    
+                <!-- Модальное окно с формой -->
+                <div id="formModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-modal">&times;</span>
+                        <div class="form-container">
+                            <script src="https://forms.yandex.ru/_static/embed.js"></script>
+                            <iframe src="https://forms.yandex.ru/u/6883656fe010db077622b923?iframe=1" 
+                                    frameborder="0" 
+                                    name="ya-form-6883656fe010db077622b923"></iframe>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <div class="contact-card">
