@@ -670,8 +670,10 @@ footer {
 }
 
 /* Стили для кнопки формы */
-/* Стили для кнопки "Отправить заявку" */
-.open-form-btn {
+/* --- Добавьте или замените эти стили --- */
+
+/* Стили для кнопки "Отправить заявку" внутри контактной карточки */
+.contact-card-button {
     background-color: var(--accent);
     color: white;
     border: none;
@@ -682,16 +684,24 @@ footer {
     transition: background-color 0.3s, transform 0.2s;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
+    width: 100%; /* Кнопка растягивается на всю ширину карточки */
+    height: 100%; /* И на всю высоту */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box; /* Учитываем padding/border в width/height */
 }
 
-.open-form-btn:hover {
+.contact-card-button:hover {
     background-color: var(--accent-light);
     transform: translateY(-2px);
 }
 
-.open-form-btn:active {
+.contact-card-button:active {
     transform: translateY(0);
 }
+
+/* --- Добавьте эти новые стили для модального окна --- */
 
 /* Стили для модального окна формы */
 .form-modal {
@@ -712,14 +722,22 @@ footer {
 .modal-content-form {
     position: relative;
     background-color: var(--bg-card);
-    margin: 5% auto;
-    padding: 0; /* Паддинг убран, так как iframe может иметь свои отступы */
+    /* Ширина модального окна: 90% экрана, но не более 1200px * 0.6 = 720px */
+    width: min(90vw, 720px);
+    /* Можно также установить min-width, если нужно строгое ограничение */
+    /* min-width: clamp(300px, 60vw, 720px); /* Пример с clamp: минимум 300px, идеально 60vw, максимум 720px */
+    max-width: 720px; /* Максимальная ширина 720px (60% от 1200px) */
+    width: 90vw; /* Ширина 90% viewport width по умолчанию */
+    margin: 5% auto; /* Центрирование по вертикали и горизонтали */
+    padding: 0;
     border: none;
     border-radius: 8px;
-    width: 90%;
-    max-width: 600px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     animation: slideIn 0.4s forwards;
+    display: flex;
+    flex-direction: column;
+    height: 80vh; /* Высота 80% от viewport height */
+    max-height: 800px; /* Ограничение максимальной высоты */
 }
 
 @keyframes fadeIn {
@@ -727,61 +745,117 @@ footer {
 }
 
 @keyframes slideIn {
-    from { transform: translateY(-50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
-
 
 /* Кнопка закрытия модального окна */
 .close-form {
     color: var(--text-secondary);
-    float: right; /* Выравнивание справа */
-    font-size: 2rem;
-    font-weight: bold;
     position: absolute;
     top: 15px;
     right: 20px;
+    font-size: 2rem;
+    font-weight: bold;
     cursor: pointer;
     transition: color 0.3s;
     z-index: 1002; /* Чтобы кнопка была поверх iframe */
+    background: none; /* Убираем фон у кнопки */
+    border: none; /* Убираем рамку */
+    padding: 0; /* Убираем внутренние отступы */
+    line-height: 1; /* Корректируем высоту строки */
 }
 
 .close-form:hover,
 .close-form:focus {
     color: var(--accent-light);
-}
-
-/* Стилизация iframe внутри модального окна */
-.modal-content-form iframe {
-    width: 100%;
-    height: 500px; /* Или другой фиксированный размер, или используйте calc() */
-    border: none;
-    border-radius: 0 0 8px 8px; /* Скругление только нижних углов, если заголовок есть */
-    display: block;
-    margin-top: 50px; /* Учитываем высоту заголовка и кнопки закрытия */
+    background: none; /* Убедимся, что фон не появляется при hover/focus */
+    outline: none; /* Убираем outline */
 }
 
 /* Заголовок внутри модального окна */
 .modal-content-form h3 {
     margin: 0;
-    padding: 15px 20px 15px 20px; /* Отступы сверху, справа, снизу, слева */
+    padding: 15px 20px 15px 20px;
     color: var(--text-primary);
-    background-color: var(--bg-dark); /* Цвет фона заголовка */
-    border-radius: 8px 8px 0 0; /* Скругление верхних углов */
+    background-color: var(--bg-dark);
+    border-radius: 8px 8px 0 0;
     text-align: center;
     font-size: 1.4rem;
+    flex-shrink: 0; /* Заголовок не сжимается */
 }
+
+/* Стилизация iframe внутри модального окна */
+.modal-content-form iframe {
+    width: 100%;
+    flex-grow: 1; /* iframe занимает всё оставшееся пространство */
+    border: none;
+    border-radius: 0 0 8px 8px;
+    display: block;
+    min-height: 300px; /* Минимальная высота для iframe */
+}
+
+/* --- Обновите существующие стили (если они есть, замените) --- */
+
+/* Убедимся, что контактная карточка может вместить кнопку */
+.contact-card {
+    background-color: var(--bg-main);
+    padding: 2rem;
+    border-radius: 8px;
+    transition: transform 0.3s;
+    display: flex; /* Добавлено */
+    flex-direction: column; /* Добавлено */
+    justify-content: center; /* Добавлено */
+    align-items: center; /* Добавлено */
+    text-align: center; /* Добавлено */
+    min-height: 200px; /* Минимальная высота для карточки с кнопкой */
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-card i {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.contact-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.contact-card a {
+    color: var(--accent-light);
+    display: block;
+    margin: 0.5rem 0;
+    transition: color 0.3s;
+}
+
+.contact-card a:hover {
+    color: var(--accent);
+}
+
+.contact-card p {
+    margin: 0.3rem 0; /* Уменьшены отступы */
+}
+
+/* --- Добавьте эти адаптивные стили --- */
 
 /* Адаптивность для модального окна формы */
 @media (max-width: 768px) {
     .modal-content-form {
-        width: 95%;
-        margin: 10% auto;
-    }
-
-    .modal-content-form iframe {
-        height: 400px; /* Уменьшаем высоту на мобильных */
-        margin-top: 45px; /* Корректируем отступ под заголовок */
+        width: 95vw; /* На планшетах чуть больше */
+        height: 85vh; /* На планшетах чуть больше */
+        margin: 7% auto; /* Центрирование */
     }
 
     .modal-content-form h3 {
@@ -794,12 +868,18 @@ footer {
         top: 12px;
         right: 15px;
     }
+
+    .contact-card {
+        min-height: 180px; /* Минимальная высота на планшетах */
+        padding: 1.5rem 1rem; /* Уменьшены отступы */
+    }
 }
 
 @media (max-width: 480px) {
-    .modal-content-form iframe {
-        height: 350px; /* Еще меньше на очень маленьких экранах */
-        margin-top: 40px;
+    .modal-content-form {
+        width: 98vw; /* Почти вся ширина на телефонах */
+        height: 80vh; /* Высота */
+        margin: 10% auto; /* Центрирование */
     }
 
     .modal-content-form h3 {
@@ -807,9 +887,19 @@ footer {
         padding: 10px 12px;
     }
 
-     .close-form {
+    .close-form {
         font-size: 1.6rem;
         top: 10px;
         right: 12px;
+    }
+
+    .contact-card {
+        min-height: 160px; /* Минимальная высота на телефонах */
+        padding: 1.2rem 0.8rem; /* Уменьшены отступы */
+    }
+
+    .contact-card-button {
+        font-size: 0.9rem; /* Меньший шрифт на кнопке */
+        padding: 0.6rem 1rem; /* Уменьшены отступы */
     }
 }
