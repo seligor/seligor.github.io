@@ -670,129 +670,146 @@ footer {
 }
 
 /* Стили для кнопки формы */
-.form-button {
+/* Стили для кнопки "Отправить заявку" */
+.open-form-btn {
     background-color: var(--accent);
     color: white;
     border: none;
-    padding: 12px 24px;
-    border-radius: 4px;
+    padding: 0.8rem 1.5rem;
     font-size: 1rem;
-    font-weight: 600;
+    border-radius: 4px;
     cursor: pointer;
-    margin-top: 1rem;
     transition: background-color 0.3s, transform 0.2s;
-    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 
-.form-button:hover {
+.open-form-btn:hover {
     background-color: var(--accent-light);
     transform: translateY(-2px);
 }
 
-/* Обновленные стили для модального окна */
-.modal {
-    display: none;
+.open-form-btn:active {
+    transform: translateY(0);
+}
+
+/* Стили для модального окна формы */
+.form-modal {
+    display: none; /* Скрыто по умолчанию */
     position: fixed;
-    z-index: 1000;
+    z-index: 1001; /* Выше других элементов */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    overflow-y: auto; /* Добавляем прокрутку для всего модального окна */
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
+    backdrop-filter: blur(5px); /* Эффект размытия фона */
+    animation: fadeIn 0.3s forwards;
 }
 
-.modal-content {
-    background-color: var(--bg-card);
-    margin: 2% auto;
-    padding: 30px;
-    border-radius: 8px;
-    width: 85%;
-    max-width: 900px; /* Увеличиваем максимальную ширину */
+/* Содержимое модального окна */
+.modal-content-form {
     position: relative;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
-    animation: modalFadeIn 0.3s ease-out;
+    background-color: var(--bg-card);
+    margin: 5% auto;
+    padding: 0; /* Паддинг убран, так как iframe может иметь свои отступы */
+    border: none;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.4s forwards;
 }
 
-.close-modal {
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+
+/* Кнопка закрытия модального окна */
+.close-form {
+    color: var(--text-secondary);
+    float: right; /* Выравнивание справа */
+    font-size: 2rem;
+    font-weight: bold;
     position: absolute;
     top: 15px;
-    right: 25px;
-    color: var(--text-secondary);
-    font-size: 32px;
-    font-weight: bold;
+    right: 20px;
     cursor: pointer;
-    transition: color 0.2s;
-    z-index: 2;
+    transition: color 0.3s;
+    z-index: 1002; /* Чтобы кнопка была поверх iframe */
 }
 
-.close-modal:hover {
-    color: var(--accent);
+.close-form:hover,
+.close-form:focus {
+    color: var(--accent-light);
 }
 
-.form-container {
+/* Стилизация iframe внутри модального окна */
+.modal-content-form iframe {
     width: 100%;
-    min-height: 500px;
-    max-height: 75vh; /* Ограничиваем максимальную высоту */
-    overflow-y: auto; /* Добавляем прокрутку внутри контейнера */
-    padding: 10px;
-}
-
-.form-container iframe {
-    width: 100%;
-    height: 100%;
-    min-height: 500px;
+    height: 500px; /* Или другой фиксированный размер, или используйте calc() */
     border: none;
-    border-radius: 4px;
+    border-radius: 0 0 8px 8px; /* Скругление только нижних углов, если заголовок есть */
+    display: block;
+    margin-top: 50px; /* Учитываем высоту заголовка и кнопки закрытия */
 }
 
-/* Анимация без дрожания */
-@keyframes modalFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Заголовок внутри модального окна */
+.modal-content-form h3 {
+    margin: 0;
+    padding: 15px 20px 15px 20px; /* Отступы сверху, справа, снизу, слева */
+    color: var(--text-primary);
+    background-color: var(--bg-dark); /* Цвет фона заголовка */
+    border-radius: 8px 8px 0 0; /* Скругление верхних углов */
+    text-align: center;
+    font-size: 1.4rem;
 }
 
-/* Адаптивность */
-@media (max-width: 1200px) {
-    .modal-content {
-        width: 90%;
-        padding: 25px;
-    }
-}
-
+/* Адаптивность для модального окна формы */
 @media (max-width: 768px) {
-    .modal-content {
+    .modal-content-form {
         width: 95%;
-        margin: 5% auto;
-        padding: 20px;
+        margin: 10% auto;
     }
-    
-    .form-container {
-        min-height: 400px;
-        max-height: 70vh;
+
+    .modal-content-form iframe {
+        height: 400px; /* Уменьшаем высоту на мобильных */
+        margin-top: 45px; /* Корректируем отступ под заголовок */
+    }
+
+    .modal-content-form h3 {
+        font-size: 1.2rem;
+        padding: 12px 15px;
+    }
+
+    .close-form {
+        font-size: 1.8rem;
+        top: 12px;
+        right: 15px;
     }
 }
 
 @media (max-width: 480px) {
-    .modal-content {
-        margin: 10% auto;
-        padding: 15px;
+    .modal-content-form iframe {
+        height: 350px; /* Еще меньше на очень маленьких экранах */
+        margin-top: 40px;
     }
-    
-    .close-modal {
+
+    .modal-content-form h3 {
+        font-size: 1.1rem;
+        padding: 10px 12px;
+    }
+
+     .close-form {
+        font-size: 1.6rem;
         top: 10px;
-        right: 15px;
-        font-size: 28px;
-    }
-    
-    .form-container {
-        min-height: 350px;
-        max-height: 65vh;
+        right: 12px;
     }
 }
