@@ -759,7 +759,7 @@ footer {
 
 /* Кнопка закрытия модального окна */
 .close-form {
-    color: var(--text-secondary);
+    color: var(--accent);
     position: absolute;
     top: 15px;
     right: 20px;
