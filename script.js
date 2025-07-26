@@ -38,3 +38,30 @@ document.addEventListener('DOMContentLoaded', () => {
         videoObserver.observe(video);
     });
 });
+
+// Обработка модального окна формы
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('formModal');
+    const btn = document.getElementById('openFormBtn');
+    const span = document.getElementsByClassName('close-modal')[0];
+    
+    // Открытие модального окна
+    btn.onclick = function() {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Блокировка прокрутки
+    }
+    
+    // Закрытие модального окна
+    span.onclick = function() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Восстановление прокрутки
+    }
+    
+    // Закрытие при клике вне окна
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+});
