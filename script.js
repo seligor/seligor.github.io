@@ -45,23 +45,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const btn = document.getElementById('openFormBtn');
     const span = document.getElementsByClassName('close-modal')[0];
     
-    // Открытие модального окна
-    btn.onclick = function() {
+    // Плавное открытие модального окна
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
         modal.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Блокировка прокрутки
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+    });
+    
+    // Плавное закрытие модального окна
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
     }
     
-    // Закрытие модального окна
-    span.onclick = function() {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Восстановление прокрутки
-    }
+    span.addEventListener('click', closeModal);
     
     // Закрытие при клике вне окна
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeModal();
         }
-    }
+    });
+    
+    // Закрытие при нажатии Escape
+    window.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modal.style.display === 'block') {
+            closeModal();
+        }
+    });
 });
