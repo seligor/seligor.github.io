@@ -175,15 +175,7 @@
             <div class="contact-card">
                 <!-- Кнопка для открытия модального окна -->
                 <button id="openFormBtn" class="open-form-btn contact-card-button">Отправить заявку</button>
-                <!-- Модальное окно с формой -->
-                <div id="formModal" class="form-modal">
-                    <div class="modal-content-form">
-                        <span class="close-form">&times;</span>
-                        <h3>Отправьте вашу заявку</h3>
-                        <script src="https://forms.yandex.ru/_static/embed.js"></script>
-                        <iframe src="https://forms.yandex.ru/u/6883656fe010db077622b923?iframe=1" frameborder="0" name="ya-form-6883656fe010db077622b923"></iframe>
-                    </div>
-                </div>
+                <!-- Само модальное окно будет перемещено в конец body -->
             </div>
             
             <div class="contact-card">
@@ -205,6 +197,16 @@
 
     </div>
 </section>
+
+        <!-- Модальное окно с формой (размещено в конце body для корректного отображения поверх всего) -->
+        <div id="formModal" class="form-modal">
+            <div class="modal-content-form">
+                <span class="close-form">&times;</span>
+                <h3>Отправьте вашу заявку</h3>
+                <script src="https://forms.yandex.ru/_static/embed.js"></script>
+                <iframe src="https://forms.yandex.ru/u/6883656fe010db077622b923?iframe=1" frameborder="0" name="ya-form-6883656fe010db077622b923"></iframe>
+            </div>
+        </div>
     
     <footer id="contact">
     <div class="footer-content">
