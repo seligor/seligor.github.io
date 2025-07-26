@@ -41,38 +41,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Обработка модального окна формы
 document.addEventListener('DOMContentLoaded', function() {
+    // Получаем элементы
     const modal = document.getElementById('formModal');
     const btn = document.getElementById('openFormBtn');
-    const span = document.getElementsByClassName('close-modal')[0];
-    
-    // Плавное открытие модального окна
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-        document.documentElement.style.overflow = 'hidden';
-    });
-    
-    // Плавное закрытие модального окна
-    function closeModal() {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-        document.documentElement.style.overflow = 'auto';
+    const span = document.querySelector('.close-form'); // Используем querySelector для поиска по классу внутри модального окна
+
+    // Функция для открытия модального окна
+    function openModal() {
+        if (modal) {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Предотвращаем прокрутку фона
+             // Добавляем обработчик клика вне формы для закрытия
+            modal.addEventListener('click', outsideClickListener);
+        }
     }
-    
-    span.addEventListener('click', closeModal);
-    
-    // Закрытие при клике вне окна
-    window.addEventListener('click', function(event) {
+
+    // Функция для закрытия модального окна
+    function closeModal() {
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = ''; // Восстанавливаем прокрутку
+            // Удаляем обработчик клика вне формы
+             modal.removeEventListener('click', outsideClickListener);
+        }
+    }
+
+     // Функция для обработки клика вне формы
+    function outsideClickListener(event) {
+        // Проверяем, является ли цель клика самим модальным окном (фоном)
         if (event.target === modal) {
             closeModal();
         }
-    });
-    
-    // Закрытие при нажатии Escape
-    window.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && modal.style.display === 'block') {
-            closeModal();
-        }
-    });
+    }
+
+
+    // Проверяем, существуют ли элементы, прежде чем добавлять обработчики событий
+    if (btn && modal && span) {
+        // Когда пользователь нажимает на кнопку, открывается модальное окно
+        btn.addEventListener('click', openModal);
+
+        // Когда пользователь нажимает на <span> (x), закрывается модальное окно
+        span.addEventListener('click', closeModal);
+
+        // Когда пользователь нажимает на Esc, закрывается модальное окно
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.style.display === 'block') {
+                closeModal();
+            }
+        });
+
+        // Опционально: закрытие модального окна при клике вне его содержимого
+        // Обработчик добавляется/удаляется внутри openModal/closeModal
+    } else {
+        console.error('Не удалось найти один или несколько элементов модального окна формы.');
+    }
 });
