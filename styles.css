@@ -800,7 +800,7 @@ footer {
     border: none;
     border-radius: 0 0 8px 8px;
     display: block;
-    min-height: 300px; /* Минимальная высота для iframe */
+    min-height: 1070px; /* Минимальная высота для iframe */
     /* --- Добавлено --- */
     /* Если iframe сам по себе очень большой, можно добавить ему прокрутку,
        но обычно прокрутка на родителе (.modal-content-form) решает проблему */
