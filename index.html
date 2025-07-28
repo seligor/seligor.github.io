@@ -3,39 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Примеры печати 3d</title>
+    <title>Профессиональная 3D печать на заказ | Изготовление деталей любой сложности</title>
+    <meta name="description" content="Профессиональная 3D печать на заказ. Изготовление деталей любой сложности с детализированной проработкой.">
+    <meta name="keywords" content="3D печать, заказ 3D печати, FDM печать, 3D моделирование">
+    <link rel="preload" href="images/print-bg.jpg" as="image">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();
-   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-   ym(103115274, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true
-   });
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/103115274" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+       ym(103115274, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/103115274" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 </head>
 <body>
-    <nav>
+    <nav aria-label="Основная навигация">
         <div class="nav-container">
-            <button class="menu-toggle" aria-label="Toggle menu">
+            <button class="menu-toggle" aria-label="Меню" aria-expanded="false" aria-controls="nav-links">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-            <div class="nav-links">
+            <div class="nav-links" id="nav-links">
                 <a href="#gallery">Видеогалерея</a>
                 <a href="#photo-gallery">Фотогалерея</a>
                 <a href="#about">О проекте</a>
@@ -118,108 +121,102 @@
                 </div>
         </section>
 
-
         <div class="about-section" id="about">
-    <h2>О сервисе 3D-печати</h2>
-    <div class="about-content">
-        <div class="about-card">
-            <i class="fas fa-print"></i>
-            <h3>Технологии производства</h3>
-            <p>Я специализируюсь на FDM-печати - наиболее распространенном методе послойного наращивания изделий из термопластиков. Эта технология обеспечивает оптимальное сочетание скорости, точности и стоимости изготовления деталей.</p>
-        </div>
+            <h2>О сервисе 3D-печати</h2>
+            <div class="about-content">
+                <div class="about-card">
+                    <i class="fas fa-print"></i>
+                    <h3>Технологии производства</h3>
+                    <p>Я специализируюсь на FDM-печати - наиболее распространенном методе послойного наращивания изделий из термопластиков. Эта технология обеспечивает оптимальное сочетание скорости, точности и стоимости изготовления деталей.</p>
+                </div>
 
-        <div class="about-card">
-            <i class="fas fa-file-upload"></i>
-            <h3>Требования к заказу</h3>
-            <p>Для начала работы вам необходимо предоставить:
-                <ul>
-                    <li>3D-модель в формате STL/STEP/OBJ</li>
-                    <li>Или технический чертеж с указанием всех размеров и допусков</li>
-                </ul>
-            При отсутствии модели я могу разработать ее по вашему техническому заданию.</p>
-        </div>
+                <div class="about-card">
+                    <i class="fas fa-file-upload"></i>
+                    <h3>Требования к заказу</h3>
+                    <p>Для начала работы вам необходимо предоставить:
+                        <ul>
+                            <li>3D-модель в формате STL/STEP/OBJ</li>
+                            <li>Или технический чертеж с указанием всех размеров и допусков</li>
+                        </ul>
+                    При отсутствии модели я могу разработать ее по вашему техническому заданию.</p>
+                </div>
 
-        <div class="about-card">
-            <i class="fas fa-calculator"></i>
-            <h3>Ценообразование</h3>
-            <p>Стоимость рассчитывается индивидуально после:
-                <ul>
-                    <li>Анализа модели в слайсере</li>
-                    <li>Определения расхода материала</li>
-                    <li>Расчета машинного времени</li>
-                </ul>
-            Базовая ставка начинается от 8 ₽/грамм с учетом всех технологических затрат.</p>
+                <div class="about-card">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Ценообразование</h3>
+                    <p>Стоимость рассчитывается индивидуально после:
+                        <ul>
+                            <li>Анализа модели в слайсере</li>
+                            <li>Определения расхода материала</li>
+                            <li>Расчета машинного времени</li>
+                        </ul>
+                    Базовая ставка начинается от 8 ₽/грамм с учетом всех технологических затрат.</p>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-        
-        <!--<section id="about" class="about">
-            <h2>О проекте</h2>
-            <p>Этот сайт демонстрирует возможности 3D-печати. Все работы созданы на принтерах FDM.</p>
-            <p>Для заказа печати от вас потребуется модель детали, которую требуется напечатать, либо чертёж с размерами.</p>
-            <p>Стоимость печати я смогу расчитать по результатам нарезки детали слайсером, учитывая затраты материала и времени печати</p>
-        </section>
-        -->
     </main>
 
-<!-- Контактная секция -->
-<section id="contacts" class="contact-section">
-    <div class="contact-container">
-        <h2>Свяжитесь со мной</h2>
-        <div class="contact-methods">
-            <div class="contact-card">
-                <i class="fas fa-envelope"></i>
-                <h3>Электронная почта</h3>
-                <a href="mailto:3dprint@seligor.planfix.ru" target="_blank">3dprint@seligor.planfix.ru</a>
-                <p>Отвечаю в течение 24 часов</p>
-            </div>
-            
-            <div class="contact-card">
-                <!-- Кнопка для открытия модального окна -->
-                <button id="openFormBtn" class="open-form-btn contact-card-button">Отправить заявку</button>
-                <!-- Само модальное окно будет перемещено в конец body -->
-            </div>
-            
-            <div class="contact-card">
-                <i class="fas fa-comment-alt"></i>
-                <h3>Мессенджеры</h3>
-                <p>Telegram: <a href="https://t.me/seligor" target="_blank">@seligor</a></p>
-
-            </div>
-            
-            <div class="contact-card">
-                <i class="fas fa-clock"></i>
-                <h3>Часы работы</h3>
-                <p>Пн-Пт: 9:00 - 20:00</p>
-                <p>Сб-Вс: по договоренности</p>
-                <p><a href="https://www.avito.ru/ekaterinburg/predlozheniya_uslug/fdm_3d_pechat_plastikom_4259501985" target="_blank">Объявление на авито</a></p>
-            </div>
-            
-        </div>
-
-    </div>
-</section>
-
-        <!-- Модальное окно с формой (размещено в конце body для корректного отображения поверх всего) -->
-        <div id="formModal" class="form-modal">
-            <div class="modal-content-form">
-                <span class="close-form">&times;</span>
-                <h3>Отправьте вашу заявку</h3>
-                <script src="https://forms.yandex.ru/_static/embed.js"></script>
-                <iframe src="https://forms.yandex.ru/u/6883656fe010db077622b923?iframe=1" frameborder="0" name="ya-form-6883656fe010db077622b923"></iframe>
+    <section id="contacts" class="contact-section">
+        <div class="contact-container">
+            <h2>Свяжитесь со мной</h2>
+            <div class="contact-methods">
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Электронная почта</h3>
+                    <a href="mailto:3dprint@seligor.planfix.ru" target="_blank">3dprint@seligor.planfix.ru</a>
+                    <p>Отвечаю в течение 24 часов</p>
+                </div>
+                
+                <div class="contact-card">
+					<div class="contact-card-content">
+						<div class="contact-card-icon">
+							<i class="fas fa-paper-plane"></i>
+						</div>
+						<h3>Свяжитесь со мной</h3>
+						<button id="openFormBtn" class="contact-card-button">Отправить заявку</button>
+					</div>
+				</div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-comment-alt"></i>
+                    <h3>Мессенджеры</h3>
+                    <p>Telegram: <a href="https://t.me/seligor" target="_blank">@seligor</a></p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Часы работы</h3>
+                    <p>Пн-Пт: 9:00 - 20:00</p>
+                    <p>Сб-Вс: по договоренности</p>
+                    <p><a href="https://www.avito.ru/ekaterinburg/predlozheniya_uslug/fdm_3d_pechat_plastikom_4259501985" target="_blank">Объявление на авито</a></p>
+                </div>
             </div>
         </div>
-    
-    <footer id="contact">
-    <div class="footer-content">
-        <p>© 2025</p>
-        <div class="social-links">
-            <a href="https://t.me/seligor" target="_blank"><i class="fab fa-telegram"></i></a>
-           <!-- <a href="#"><i class="fab fa-vk"></i></a> -->
-           <!-- <a href="#"><i class="fab fa-youtube"></i></a> -->
+    </section>
+
+    <div id="formModal" class="form-modal" aria-hidden="true">
+        <div class="modal-content-form">
+            <button class="close-form" aria-label="Закрыть окно">&times;</button>
+            <h3>Отправьте вашу заявку</h3>
+            <script src="https://forms.yandex.ru/_static/embed.js"></script>
+            <iframe src="https://forms.yandex.ru/u/6883656fe010db077622b923?iframe=1" frameborder="0" name="ya-form-6883656fe010db077622b923" title="Форма заявки"></iframe>
         </div>
     </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2025</p>
+            <div class="social-links">
+                <a href="https://t.me/seligor" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+        </div>
     </footer>
+
+    <noscript>
+        <div class="noscript-warning">
+            <p>Для полноценной работы сайта требуется включенный JavaScript.</p>
+        </div>
+    </noscript>
 
     <script src="script.js"></script>
 </body>
