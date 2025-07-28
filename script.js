@@ -1,120 +1,146 @@
-// Плавная прокрутка для навигации
-document.querySelectorAll('nav a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            window.scrollTo({
-                top: targetElement.offsetTop - 80,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// Меню для мобильных
 document.addEventListener('DOMContentLoaded', function() {
+    // Мобильное меню
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     
-    menuToggle.addEventListener('click', function() {
-        navLinks.classList.toggle('active');
-        
-        // Анимация гамбургера в крестик
-        const spans = this.querySelectorAll('span');
-        if (navLinks.classList.contains('active')) {
-            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-        } else {
-            spans.forEach(span => {
-                span.style.transform = '';
-                span.style.opacity = '';
-            });
-        }
-    });
-});
-// Ленивая загрузка видео
-document.addEventListener('DOMContentLoaded', () => {
-    const lazyVideos = document.querySelectorAll('video[data-src]');
-    
-    const lazyLoadVideo = (video) => {
-        video.setAttribute('src', video.getAttribute('data-src'));
-        video.load();
-        video.removeAttribute('data-src');
-    };
-    
-    const videoObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                lazyLoadVideo(entry.target);
-                videoObserver.unobserve(entry.target);
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+            navLinks.classList.toggle('active');
+            
+            const spans = this.querySelectorAll('span');
+            if (navLinks.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans.forEach(span => {
+                    span.style.transform = '';
+                    span.style.opacity = '';
+                });
+            }
+        });
+    }
+
+    // Плавная прокрутка
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId.startsWith('#')) {
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Закрываем меню на мобильных после клика
+                    if (navLinks && navLinks.classList.contains('active')) {
+                        menuToggle.click();
+                    }
+                }
             }
         });
     });
-    
-    lazyVideos.forEach(video => {
-        videoObserver.observe(video);
-    });
-});
 
-// Обработка модального окна формы
-document.addEventListener('DOMContentLoaded', function() {
-    // Получаем элементы
+    // Ленивая загрузка медиа
+    const lazyLoadMedia = () => {
+        const lazyMedia = document.querySelectorAll('[data-src]');
+        
+        if ('IntersectionObserver' in window) {
+            const mediaObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const media = entry.target;
+                        if (media.tagName === 'VIDEO') {
+                            media.src = media.dataset.src;
+                        } else if (media.tagName === 'IMG') {
+                            media.src = media.dataset.src;
+                            media.removeAttribute('data-src');
+                        }
+                        media.load && media.load();
+                        observer.unobserve(media);
+                    }
+                });
+            }, {
+                rootMargin: '100px 0px',
+                threshold: 0.1
+            });
+
+            lazyMedia.forEach(media => mediaObserver.observe(media));
+        } else {
+            // Fallback для браузеров без поддержки IntersectionObserver
+            lazyMedia.forEach(media => {
+                if (media.tagName === 'VIDEO') {
+                    media.src = media.dataset.src;
+                } else if (media.tagName === 'IMG') {
+                    media.src = media.dataset.src;
+                    media.removeAttribute('data-src');
+                }
+                media.load && media.load();
+            });
+        }
+    };
+
+    // Инициализация ленивой загрузки
+    lazyLoadMedia();
+
+    // Модальное окно формы
     const modal = document.getElementById('formModal');
     const btn = document.getElementById('openFormBtn');
-    const span = document.querySelector('.close-form'); // Используем querySelector для поиска по классу внутри модального окна
+    const span = document.querySelector('.close-form');
 
-    // Функция для открытия модального окна
-    function openModal() {
-        if (modal) {
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Предотвращаем прокрутку фона
-             // Добавляем обработчик клика вне формы для закрытия
-            modal.addEventListener('click', outsideClickListener);
-        }
-    }
+    if (modal && btn && span) {
+        const openModal = () => {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            modal.setAttribute('aria-hidden', 'false');
+            // Фокусируемся на первом элементе формы
+            setTimeout(() => {
+                const iframe = modal.querySelector('iframe');
+                iframe && iframe.focus();
+            }, 100);
+        };
 
-    // Функция для закрытия модального окна
-    function closeModal() {
-        if (modal) {
+        const closeModal = () => {
             modal.style.display = 'none';
-            document.body.style.overflow = ''; // Восстанавливаем прокрутку
-            // Удаляем обработчик клика вне формы
-             modal.removeEventListener('click', outsideClickListener);
-        }
-    }
+            document.body.style.overflow = '';
+            modal.setAttribute('aria-hidden', 'true');
+        };
 
-     // Функция для обработки клика вне формы
-    function outsideClickListener(event) {
-        // Проверяем, является ли цель клика самим модальным окном (фоном)
-        if (event.target === modal) {
-            closeModal();
-        }
-    }
-
-
-    // Проверяем, существуют ли элементы, прежде чем добавлять обработчики событий
-    if (btn && modal && span) {
-        // Когда пользователь нажимает на кнопку, открывается модальное окно
         btn.addEventListener('click', openModal);
-
-        // Когда пользователь нажимает на <span> (x), закрывается модальное окно
         span.addEventListener('click', closeModal);
 
-        // Когда пользователь нажимает на Esc, закрывается модальное окно
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && modal.style.display === 'block') {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
                 closeModal();
             }
         });
-
-        // Опционально: закрытие модального окна при клике вне его содержимого
-        // Обработчик добавляется/удаляется внутри openModal/closeModal
-    } else {
-        console.error('Не удалось найти один или несколько элементов модального окна формы.');
     }
+
+    // Обработка ошибок загрузки медиа
+    document.addEventListener('error', function(e) {
+        const target = e.target;
+        if (target.tagName === 'IMG' || target.tagName === 'VIDEO') {
+            console.error('Ошибка загрузки медиа:', target.src || target.dataset.src);
+            target.style.display = 'none';
+        }
+    }, true);
 });
+
+// Регистрация Service Worker для оффлайн-работы
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').then(registration => {
+            console.log('ServiceWorker registration successful');
+        }).catch(err => {
+            console.log('ServiceWorker registration failed: ', err);
+        });
+    });
+}
