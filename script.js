@@ -15,6 +15,48 @@ document.querySelectorAll('nav a').forEach(anchor => {
     });
 });
 
+// Меню для мобильных
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    // Функция для переключения меню
+    function toggleMenu() {
+        navLinks.classList.toggle('active');
+        const isOpen = navLinks.classList.contains('active');
+        
+        // Анимация гамбургера
+        const spans = menuToggle.querySelectorAll('span');
+        if (isOpen) {
+            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+        } else {
+            spans.forEach(span => {
+                span.style.transform = '';
+                span.style.opacity = '';
+            });
+        }
+        
+        // Добавляем/удаляем aria-атрибут
+        menuToggle.setAttribute('aria-expanded', isOpen);
+    }
+    
+    menuToggle.addEventListener('click', toggleMenu);
+    
+    // Закрытие меню при клике вне его
+    document.addEventListener('click', function(e) {
+        if (!navLinks.contains(e.target) && e.target !== menuToggle) {
+            navLinks.classList.remove('active');
+            menuToggle.querySelectorAll('span').forEach(span => {
+                span.style.transform = '';
+                span.style.opacity = '';
+            });
+            menuToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+});
+
 // Ленивая загрузка видео
 document.addEventListener('DOMContentLoaded', () => {
     const lazyVideos = document.querySelectorAll('video[data-src]');
