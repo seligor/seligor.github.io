@@ -6,9 +6,12 @@
     --text-secondary: #cccccc;
     --accent: #4d8bf0;
     --accent-light: #6da3f7;
+    --transition-fast: 0.2s;
+    --transition-medium: 0.3s;
+    --transition-slow: 0.5s;
+    --easing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Общие стили */
 * {
     margin: 0;
     padding: 0;
@@ -20,6 +23,8 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-primary);
     line-height: 1.6;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
 }
 
 a {
@@ -51,7 +56,33 @@ nav {
     display: flex;
     gap: 2rem;
 }
-/* */
+
+.nav-links a {
+    font-weight: 500;
+    transition: color var(--transition-medium);
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: width var(--transition-medium) var(--easing);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
 .menu-toggle {
     display: none;
     flex-direction: column;
@@ -69,7 +100,7 @@ nav {
     width: 100%;
     height: 3px;
     background: var(--text-primary);
-    transition: all 0.3s ease;
+    transition: all var(--transition-medium) var(--easing);
 }
 
 @media (max-width: 768px) {
@@ -84,11 +115,11 @@ nav {
         flex-direction: column;
         gap: 0;
         background: var(--bg-main);
-        width: 200px; /* Можно настроить по вашему вкусу */
+        width: 200px;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease;
-        border-radius: 12px; /* Скругление углов */
+        transition: max-height var(--transition-medium) var(--easing);
+        border-radius: 12px;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     }
     
@@ -101,7 +132,7 @@ nav {
         padding: 1rem;
         text-align: center;
         color: var(--text-primary);
-        transition: background 0.2s ease;
+        transition: background var(--transition-fast);
     }
     
     .nav-links a:not(:last-child) {
@@ -123,36 +154,11 @@ nav {
         background: var(--bg-card);
     }
 }
-/* */
-.nav-links a {
-    font-weight: 500;
-    transition: color 0.3s;
-    position: relative;
-}
-
-.nav-links a:hover {
-    color: var(--accent);
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--accent);
-    transition: width 0.3s;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
 
 /* Шапка */
 header {
     background: linear-gradient(rgba(30, 30, 30, 0.9), rgba(30, 30, 30, 0.9)), 
-                url('images/print-bg.jpg') center/cover;
+                url('images/print-bg.jpg') center/cover no-repeat;
     padding: 5rem 0 6rem;
     text-align: center;
 }
@@ -164,14 +170,14 @@ header {
 }
 
 .header-content h1 {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
     margin-bottom: 1rem;
     font-weight: 700;
     line-height: 1.2;
 }
 
 .subtitle {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 3vw, 1.2rem);
     color: var(--text-secondary);
     margin-bottom: 3rem;
     max-width: 800px;
@@ -197,8 +203,10 @@ header {
     background-color: var(--bg-card);
     padding: 2rem 1.5rem;
     border-radius: 8px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform var(--transition-medium) var(--easing), 
+                box-shadow var(--transition-medium) var(--easing);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    will-change: transform;
 }
 
 .advantage-card:hover {
@@ -242,7 +250,8 @@ header {
     border-radius: 8px;
     display: flex;
     align-items: center;
-    transition: background-color 0.3s;
+    transition: background-color var(--transition-medium) var(--easing);
+    will-change: background-color;
 }
 
 .requirement-card:hover {
@@ -283,7 +292,8 @@ header {
     background-color: var(--bg-card);
     border-radius: 8px;
     overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform var(--transition-medium) var(--easing), 
+                box-shadow var(--transition-medium) var(--easing);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -308,26 +318,6 @@ header {
 }
 
 /* О проекте */
-.about {
-    background-color: var(--bg-main);
-    padding: 4rem 0;
-}
-
-.about h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: var(--accent);
-}
-
-.about p {
-    width: 90%;
-    max-width: 800px;
-    margin: 0 auto 1.5rem;
-    line-height: 1.6;
-    text-align: center;
-}
-
 .about-section {
     background-color: var(--bg-main);
     padding: 4rem 2rem;
@@ -352,7 +342,8 @@ header {
     background-color: var(--bg-card);
     padding: 2rem;
     border-radius: 8px;
-    transition: transform 0.3s;
+    transition: transform var(--transition-medium) var(--easing);
+    will-change: transform;
 }
 
 .about-card:hover {
@@ -380,25 +371,7 @@ header {
     margin-bottom: 0.5rem;
 }
 
-/* Подвал */
-footer {
-    background-color: var(--bg-card);
-    padding: 2.5rem 0;
-    text-align: center;
-}
-
-footer p {
-    margin-bottom: 0.5rem;
-    color: var(--text-secondary);
-}
-
-footer p:first-child {
-    font-weight: 500;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-}
-
-/* Стили для контактной секции */
+/* Контактная секция */
 .contact-section {
     background-color: var(--bg-card);
     padding: 4rem 2rem;
@@ -426,7 +399,23 @@ footer p:first-child {
     background-color: var(--bg-main);
     padding: 2rem;
     border-radius: 8px;
-    transition: transform 0.3s;
+    transition: transform var(--transition-medium) var(--easing);
+    will-change: transform;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /*align-items: center;
+    text-align: center;*/
+    min-height: 200px;
+}
+
+.contact-card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
 }
 
 .contact-card:hover {
@@ -449,154 +438,45 @@ footer p:first-child {
     color: var(--accent-light);
     display: block;
     margin: 0.5rem 0;
-    transition: color 0.3s;
+    transition: color var(--transition-medium);
 }
 
 .contact-card a:hover {
     color: var(--accent);
 }
 
-/* Стили для футера */
-footer {
-    background-color: var(--bg-dark);
-    padding: 2rem;
-    text-align: center;
+.contact-card p {
+    margin: 0.3rem 0;
 }
 
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.social-links {
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 1.5rem;
-}
-
-.social-links a {
-    color: var(--text-secondary);
-    font-size: 1.5rem;
-    transition: color 0.3s;
-}
-
-.social-links a:hover {
-    color: var(--accent);
-}
-
-/* Фотогалерея */
-.photo-gallery {
-    background-color: var(--bg-main);
-    padding: 4rem 0;
-}
-
-.photo-gallery h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: var(--accent);
-}
-
-.photo-grid {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.photo-card {
-    background-color: var(--bg-card);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.photo-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-}
-
-.photo-container {
-    position: relative;
-    padding-top: 100%; /* Квадратное соотношение */
-    overflow: hidden;
-}
-
-.photo-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
+/* Кнопка формы */
+.contact-card-button {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color var(--transition-medium), 
+                transform var(--transition-fast);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s;
-}
-
-.photo-card:hover .photo-container img {
-    transform: scale(1.05);
-}
-
-.photo-info {
-    padding: 1.2rem;
-}
-
-.photo-info h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
-}
-
-.photo-info p {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
-/* Модальное окно */
-.photo-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    box-sizing: border-box;
 }
 
-.modal-content {
-    position: relative;
-    max-width: 90%;
-    max-height: 90%;
+.contact-card-button:hover {
+    background-color: var(--accent-light);
+    transform: translateY(-2px);
 }
 
-.modal-content img {
-    max-width: 100%;
-    max-height: 80vh;
-    display: block;
-    margin: 0 auto;
-}
-
-.modal-info {
-    color: white;
-    text-align: center;
-    margin-top: 1rem;
-}
-
-.close {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
+.contact-card-button:active {
+    transform: translateY(0);
 }
 
 /* Стили для фильтрации */
@@ -627,184 +507,141 @@ footer {
     font-weight: bold;
 }
 
-/* Модальное окно для фото */
-.photo-modal {
-    position: fixed;
+/* Фотогалерея */
+.photo-gallery {
+    background-color: var(--bg-main);
+    padding: 4rem 0;
+}
+
+.photo-gallery h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--accent);
+}
+
+.photo-grid {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.photo-card {
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform var(--transition-medium) var(--easing), 
+                box-shadow var(--transition-medium) var(--easing);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.photo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.photo-container {
+    position: relative;
+    padding-top: 100%;
+    overflow: hidden;
+}
+
+.photo-container img {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    opacity: 0;
-    animation: fadeIn 0.3s forwards;
+    object-fit: cover;
+    transition: transform var(--transition-medium) var(--easing);
 }
 
-@keyframes fadeIn {
-    to { opacity: 1; }
+.photo-card:hover .photo-container img {
+    transform: scale(1.05);
 }
 
-.modal-content {
-    position: relative;
-    max-width: 90%;
-    max-height: 90%;
-    background: var(--bg-card);
-    padding: 1rem;
-    border-radius: 8px;
+.photo-info {
+    padding: 1.2rem;
+}
+
+.photo-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.photo-info p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Подвал */
+footer {
+    background-color: var(--bg-dark);
+    padding: 2rem;
     text-align: center;
 }
 
-.modal-content img {
-    max-width: 100%;
-    max-height: 70vh;
-    display: block;
+.footer-content {
+    max-width: 1200px;
     margin: 0 auto;
-    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.modal-info {
-    color: white;
-    text-align: center;
-    margin-top: 1rem;
-    padding: 0 1rem;
+.social-links {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1.5rem;
 }
 
-.close {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    color: white;
-    font-size: 2.5rem;
-    cursor: pointer;
-    transition: color 0.3s;
+.social-links a {
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    transition: color var(--transition-medium);
 }
 
-.close:hover {
+.social-links a:hover {
     color: var(--accent);
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .nav-links {
-        gap: 1.2rem;
-    }
-    
-    .header-content h1 {
-        font-size: 2rem;
-    }
-    
-    .advantages-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .requirement-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 1.5rem 1rem;
-    }
-    
-    .requirement-icon {
-        margin-right: 0;
-        margin-bottom: 1rem;
-    }
-    
-    .video-grid {
-        grid-template-columns: 1fr;
-    }
-
-        .contact-methods {
-        grid-template-columns: 1fr;
-    }
-    
-    .footer-content {
-        flex-direction: column;
-    }
-    
-    .social-links {
-        margin-top: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .nav-links {
-        gap: 1rem;
-        font-size: 0.9rem;
-    }
-    
-    .header-content h1 {
-        font-size: 1.8rem;
-    }
-    
-    .subtitle {
-        font-size: 1rem;
-    }
-}
-
-/* Стили для кнопки формы */
-/* --- Добавьте или замените эти стили --- */
-
-/* Стили для кнопки "Отправить заявку" внутри контактной карточки */
-.contact-card-button {
-    background-color: var(--accent);
-    color: white;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    width: 100%; /* Кнопка растягивается на всю ширину карточки */
-    height: 100%; /* И на всю высоту */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box; /* Учитываем padding/border в width/height */
-}
-
-.contact-card-button:hover {
-    background-color: var(--accent-light);
-    transform: translateY(-2px);
-}
-
-.contact-card-button:active {
-    transform: translateY(0);
-}
-
-/* --- Добавьте эти новые стили для модального окна --- */
-
-/* Стили для модального окна формы */
+/* Модальное окно формы */
 .form-modal {
-    display: none; /* Скрыто по умолчанию */
+    display: none;
     position: fixed;
-    z-index: 1001; /* Выше других элементов */
+    z-index: 1001;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
-    backdrop-filter: blur(5px); /* Эффект размытия фона */
-    animation: fadeIn 0.3s forwards;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-medium) var(--easing), 
+                visibility var(--transition-medium) var(--easing);
 }
 
-/* Содержимое модального окна */
+.form-modal[aria-hidden="false"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    visibility: visible;
+}
+
 .modal-content-form {
     position: relative;
     background-color: var(--bg-card);
-    /* Ширина модального окна: 90% экрана, но не более 1200px * 0.6 = 720px */
     width: min(90vw, 720px);
-    max-width: 720px; /* Максимальная ширина 720px (60% от 1200px) */
-    width: 90vw; /* Ширина 90% viewport width по умолчанию */
-    /* --- Изменения здесь для прокрутки --- */
-    max-height: 90vh; /* Максимальная высота 90% от высоты экрана */
-    overflow-y: auto; /* Добавляем вертикальную прокрутку, если содержимое больше */
-    /* ------------------------------------- */
-    margin: 5% auto; /* Центрирование по вертикали и горизонтали */
+    max-height: 90vh;
+    overflow-y: auto;
+    margin: 5% auto;
     padding: 0;
     border: none;
     border-radius: 8px;
@@ -812,8 +649,6 @@ footer {
     animation: slideIn 0.4s forwards;
     display: flex;
     flex-direction: column;
-    /* height: 80vh; */ /* Убираем фиксированную высоту */
-    /* max-height: 800px; */ /* Убираем максимальную высоту в пикселях, оставляем только в vh */
 }
 
 @keyframes fadeIn {
@@ -831,7 +666,6 @@ footer {
     }
 }
 
-/* Кнопка закрытия модального окна */
 .close-form {
     color: var(--accent);
     position: absolute;
@@ -840,102 +674,65 @@ footer {
     font-size: 2rem;
     font-weight: bold;
     cursor: pointer;
-    transition: color 0.3s;
-    z-index: 1002; /* Чтобы кнопка была поверх iframe */
-    background: none; /* Убираем фон у кнопки */
-    border: none; /* Убираем рамку */
-    padding: 0; /* Убираем внутренние отступы */
-    line-height: 1; /* Корректируем высоту строки */
+    transition: color var(--transition-medium);
+    z-index: 1002;
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
 }
 
 .close-form:hover,
 .close-form:focus {
     color: var(--accent-light);
-    background: none; /* Убедимся, что фон не появляется при hover/focus */
-    outline: none; /* Убираем outline */
+    background: none;
+    outline: none;
 }
 
-/* Заголовок внутри модального окна */
 .modal-content-form h3 {
     margin: 0;
-    padding: 15px 20px 15px 20px;
+    padding: 15px 20px;
     color: var(--text-primary);
     background-color: var(--bg-dark);
     border-radius: 8px 8px 0 0;
     text-align: center;
     font-size: 1.4rem;
-    flex-shrink: 0; /* Заголовок не сжимается */
+    flex-shrink: 0;
 }
 
-/* Стилизация iframe внутри модального окна */
 .modal-content-form iframe {
     width: 100%;
-    flex-grow: 1; /* iframe занимает всё оставшееся пространство */
+    flex-grow: 1;
     border: none;
     border-radius: 0 0 8px 8px;
     display: block;
-    min-height: 1070px; /* Минимальная высота для iframe */
-    /* --- Добавлено --- */
-    /* Если iframe сам по себе очень большой, можно добавить ему прокрутку,
-       но обычно прокрутка на родителе (.modal-content-form) решает проблему */
-    /* ----------------- */
+    min-height: 1070px;
 }
 
-/* --- Обновите существующие стили (если они есть, замените) --- */
-
-/* Убедимся, что контактная карточка может вместить кнопку */
-.contact-card {
-    background-color: var(--bg-main);
-    padding: 2rem;
-    border-radius: 8px;
-    transition: transform 0.3s;
-    display: flex; /* Добавлено */
-    flex-direction: column; /* Добавлено */
-    justify-content: center; /* Добавлено */
-    align-items: center; /* Добавлено */
-    text-align: center; /* Добавлено */
-    min-height: 200px; /* Минимальная высота для карточки с кнопкой */
+/* Предупреждение для noscript */
+.noscript-warning {
+    padding: 1rem;
+    background-color: #f8d7da;
+    color: #721c24;
+    text-align: center;
+    border: 1px solid #f5c6cb;
+    margin: 1rem;
+    border-radius: 4px;
 }
 
-.contact-card:hover {
-    transform: translateY(-5px);
-}
-
-.contact-card i {
-    font-size: 2.5rem;
-    color: var(--accent);
-    margin-bottom: 1rem;
-}
-
-.contact-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-}
-
-.contact-card a {
-    color: var(--accent-light);
-    display: block;
-    margin: 0.5rem 0;
-    transition: color 0.3s;
-}
-
-.contact-card a:hover {
-    color: var(--accent);
-}
-
-.contact-card p {
-    margin: 0.3rem 0; /* Уменьшены отступы */
-}
-
-/* --- Добавьте эти адаптивные стили --- */
-
-/* Адаптивность для модального окна формы */
+/* Адаптивность */
 @media (max-width: 768px) {
+    .advantages-grid,
+    .requirements-grid,
+    .about-content,
+    .contact-methods {
+        grid-template-columns: 1fr;
+    }
+    
     .modal-content-form {
-        width: 95vw; /* На планшетах чуть больше */
-        height: 85vh; /* На планшетах чуть больше */
-        margin: 7% auto; /* Центрирование */
+        width: 95vw;
+        height: 85vh;
+        margin: 7% auto;
     }
 
     .modal-content-form h3 {
@@ -950,16 +747,41 @@ footer {
     }
 
     .contact-card {
-        min-height: 180px; /* Минимальная высота на планшетах */
-        padding: 1.5rem 1rem; /* Уменьшены отступы */
+        min-height: 180px;
+        padding: 1.5rem 1rem;
     }
+}
+
+.contact-card-button {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color var(--transition-medium), 
+                transform var(--transition-fast);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    width: auto; /* Ширина по содержимому */
+    margin-top: auto; /* Прижимаем кнопку к низу */
+}
+
+.contact-card-button:hover {
+    background-color: var(--accent-light);
+    transform: translateY(-2px);
+}
+
+.contact-card-button:active {
+    transform: translateY(0);
 }
 
 @media (max-width: 480px) {
     .modal-content-form {
-        width: 98vw; /* Почти вся ширина на телефонах */
-        height: 80vh; /* Высота */
-        margin: 10% auto; /* Центрирование */
+        width: 98vw;
+        height: 80vh;
+        margin: 10% auto;
     }
 
     .modal-content-form h3 {
@@ -974,12 +796,21 @@ footer {
     }
 
     .contact-card {
-        min-height: 160px; /* Минимальная высота на телефонах */
-        padding: 1.2rem 0.8rem; /* Уменьшены отступы */
+        min-height: 160px;
+        padding: 1.2rem 0.8rem;
     }
 
     .contact-card-button {
-        font-size: 0.9rem; /* Меньший шрифт на кнопке */
-        padding: 0.6rem 1rem; /* Уменьшены отступы */
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
