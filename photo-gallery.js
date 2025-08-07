@@ -88,45 +88,48 @@ document.addEventListener('DOMContentLoaded', function() {
         return photoCard;
     }
 
-    // Функция для открытия модального окна
-    function openModal(photo) {
-        const modal = document.createElement('div');
-        modal.className = 'photo-modal';
-        modal.innerHTML = `
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <img src="gallery/${photo.filename}" alt="${photo.title}">
-                <div class="modal-info">
-                    <h3>${photo.title}</h3>
-                    <p>Время печати: ${photo.time}</p>
-                    ${photo.material ? `<p>Материал: ${photo.material}</p>` : ''}
-                </div>
+function openModal(photo) {
+    const modal = document.createElement('div');
+    modal.className = 'photo-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img src="gallery/${photo.filename}" alt="${photo.title}">
+            <div class="modal-info">
+                <h3>${photo.title}</h3>
+                <p>Время печати: ${photo.time}</p>
+                ${photo.material ? `<p>Материал: ${photo.material}</p>` : ''}
             </div>
-        `;
-        
-        document.body.appendChild(modal);
-        
-        // Закрытие модального окна
-        const closeBtn = modal.querySelector('.close');
-        closeBtn.addEventListener('click', () => {
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    document.body.style.overflow = 'hidden'; // Блокируем прокрутку страницы
+    
+    // Закрытие модального окна
+    const closeBtn = modal.querySelector('.close');
+    closeBtn.addEventListener('click', () => {
+        document.body.removeChild(modal);
+        document.body.style.overflow = ''; // Восстанавливаем прокрутку
+    });
+    
+    // Закрытие по клику вне изображения
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
             document.body.removeChild(modal);
-        });
-        
-        // Закрытие по клику вне изображения
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                document.body.removeChild(modal);
-            }
-        });
-        
-        // Закрытие по ESC
-        document.addEventListener('keydown', function closeOnEsc(e) {
-            if (e.key === 'Escape') {
-                document.body.removeChild(modal);
-                document.removeEventListener('keydown', closeOnEsc);
-            }
-        });
-    }
+            document.body.style.overflow = ''; // Восстанавливаем прокрутку
+        }
+    });
+    
+    // Закрытие по ESC
+    document.addEventListener('keydown', function closeOnEsc(e) {
+        if (e.key === 'Escape') {
+            document.body.removeChild(modal);
+            document.body.style.overflow = ''; // Восстанавливаем прокрутку
+            document.removeEventListener('keydown', closeOnEsc);
+        }
+    });
+}
 
     // Добавляем все фотографии в галерею
     photos.forEach(photo => {
