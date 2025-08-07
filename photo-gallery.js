@@ -53,11 +53,41 @@ document.addEventListener('DOMContentLoaded', function() {
             material: 'PETG'
         },
         {
+            filename: 'vetryak1.jpg',
+            title: 'Проект "ветряк" - показывает направление и силу ветра',
+            time: '6 часов',
+            material: 'PETG'
+        },        
+        {
+            filename: 'vetryak2.jpg',
+            title: 'Проект "ветряк" - показывает направление и силу ветра',
+            time: '6 часов',
+            material: 'PETG'
+        },
+        {
             filename: 'catmask.jpg',
             title: 'Маска для котов',
             time: '5 часов',
             material: 'PETG'
         },
+        {
+            filename: 'nautilus1.jpg',
+            title: 'Шестерни "наутилус"',
+            time: '1 час',
+            material: 'PETG'
+        },        
+        {
+            filename: 'nautilus2.jpg',
+            title: 'Шестерни "наутилус"',
+            time: '1 час',
+            material: 'PETG'
+        },
+        {
+            filename: 'nautiles3.jpg',
+            title: 'Шестерни "наутилус"',
+            time: '1 час',
+            material: 'PETG'
+        },        
 
 
 
